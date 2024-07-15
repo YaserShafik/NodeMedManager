@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Appointment</title>
+</head>
+<body>
+  <h1>Update Appointment</h1>
+  <form action="/api/appointments/<%= appointment._id %>?_method=PUT" method="POST">
+    <label for="patient">Patient ID:</label>
+    <input type="text" id="patient" name="patient" value="<%= appointment.patient %>" required>
+    <br>
+    <label for="doctor">Doctor ID:</label>
+    <input type="text" id="doctor" name="doctor" value="<%= appointment.doctor %>" required>
+    <br>
+    <label for="date">Date:</label>
+    <input type="datetime-local" id="date" name="date" value="<%= appointment.date.toISOString().slice(0, 16) %>" required>
+    <br>
+    <label for="reason">Reason:</label>
+    <input type="text" id="reason" name="reason" value="<%= appointment.reason %>" required>
+    <br>
+    <label for="status">Status:</label>
+    <select id="status" name="status">
+      <option value="Scheduled" <%= appointment.status === 'Scheduled' ? 'selected' : '' %>>Scheduled</option>
+      <option value="Completed" <%= appointment.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+      <option value="Cancelled" <%= appointment.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+    </select>
+    <br>
+    <button type="submit">Update Appointment</button>
+  </form>
+</body>
+</html>

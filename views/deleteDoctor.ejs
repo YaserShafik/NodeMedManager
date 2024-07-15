@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Doctor</title>
+</head>
+<body>
+  <h1>Delete Doctor</h1>
+  <form action="/api/doctors/<%= doctor._id %>?_method=DELETE" method="POST">
+    <p>Are you sure you want to delete Dr. <%= doctor.firstName %> <%= doctor.lastName %>?</p>
+    <button type="submit">Delete</button>
+  </form>
+</body>
+</html>

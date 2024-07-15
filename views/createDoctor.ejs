@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Doctor</title>
+</head>
+<body>
+  <h1>Create Doctor</h1>
+  <form action="/api/doctors" method="POST">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required>
+    <br>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required>
+    <br>
+    <label for="specialty">Specialty:</label>
+    <input type="text" id="specialty" name="specialty" required>
+    <br>
+    <label for="schedule">Schedule:</label>
+    <input type="text" id="schedule" name="schedule" required>
+    <br>
+    <button type="submit">Create Doctor</button>
+  </form>
+</body>
+</html>
