@@ -7,7 +7,7 @@
 </head>
 <body>
   <h1>Login</h1>
-  <form action="/api/auth/login" method="POST">
+  <form id="loginForm" action="/api/auth/login" method="POST">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
     <br>
@@ -16,28 +16,5 @@
     <br>
     <button type="submit">Login</button>
   </form>
-  <script>
-    document.querySelector('form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem('token', data.token);
-        window.location.href = '/api/appointments/create';
-      } else {
-        alert(data.message);
-      }
-    });
-  </script>
 </body>
 </html>

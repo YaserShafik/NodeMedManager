@@ -7,7 +7,7 @@
 </head>
 <body>
   <h1>Create Appointment</h1>
-  <form id="appointmentForm">
+  <form id="appointmentForm" action="/api/appointments" method="POST">
     <label for="patient">Patient ID:</label>
     <input type="text" id="patient" name="patient" required>
     <br>
@@ -22,37 +22,5 @@
     <br>
     <button type="submit">Create Appointment</button>
   </form>
-  <script>
-    document.getElementById('appointmentForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const token = localStorage.getItem('token');
-      if (!token) {
-        alert('You must be logged in to create an appointment');
-        return;
-      }
-
-      const patient = document.getElementById('patient').value;
-      const doctor = document.getElementById('doctor').value;
-      const date = document.getElementById('date').value;
-      const reason = document.getElementById('reason').value;
-
-      const response = await fetch('/api/appointments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ patient, doctor, date, reason })
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert('Appointment created successfully');
-      } else {
-        alert(data.message);
-      }
-    });
-  </script>
 </body>
 </html>

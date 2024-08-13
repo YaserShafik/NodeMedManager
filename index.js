@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const helmetConfig = require('./config/helmetConfig')
 const path = require('path');
 
 // Configure environment variables
@@ -10,8 +11,12 @@ dotenv.config();
 // Initialize the Express application
 const app = express();
 
+// Set view engine to EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// Middleware de Helmet para mejorar la seguridad
+app.use(helmetConfig);
 
 // Connect to the database
 mongoose.connect(process.env.MONGO_URI, {

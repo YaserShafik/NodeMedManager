@@ -7,18 +7,15 @@
 </head>
 <body>
   <h1>Update Doctor</h1>
-  <form action="/api/doctors/<%= doctor._id %>?_method=PUT" method="POST">
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName" value="<%= doctor.firstName %>" required>
+  <form id="doctorForm" action="/api/doctors/<%= doctor._id %>?_method=PUT" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="<%= doctor.name %>" required>
     <br>
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" value="<%= doctor.lastName %>" required>
+    <label for="specialization">Specialization:</label>
+    <input type="text" id="specialization" name="specialization" value="<%= doctor.specialization %>" required>
     <br>
-    <label for="specialty">Specialty:</label>
-    <input type="text" id="specialty" name="specialty" value="<%= doctor.specialty %>" required>
-    <br>
-    <label for="schedule">Schedule:</label>
-    <input type="text" id="schedule" name="schedule" value="<%= doctor.schedule %>" required>
+    <label for="experience">Experience:</label>
+    <input type="number" id="experience" name="experience" value="<%= doctor.experience %>" required>
     <br>
     <button type="submit">Update Doctor</button>
   </form>
