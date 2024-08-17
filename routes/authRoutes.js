@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
+const {check, validationResult } = require('express-validator')
 
 // Render the register view
 router.get('/register', (req, res) => {
@@ -8,12 +9,12 @@ router.get('/register', (req, res) => {
 });
 
 // Handle register form submission
-router.post('/register', authController.register);
+router.post('/register',  authController.register);
 
 // Render the login view
 router.get('/login', (req, res) => {
   console.log("Get a login get")
-  res.render('login');
+  res.render('login',{title: 'Login', body:''});
 });
 
 // Handle login form submission

@@ -9,7 +9,10 @@ module.exports = (req, res, next) => {
     console.log('Decoded Token:', decoded); // Verificar el contenido del token
     req.user = decoded;  // Aquí es donde se adjunta el rol y el ID del usuario
     next();
-  } catch (ex) {
+  } catch (error) {
+    if(error instanceof TypeError){
+      console.error("Error de typeerror:", error.message); 
+    }
     res.status(400).send('Invalid token.');
   }
 };

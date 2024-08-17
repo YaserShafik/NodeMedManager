@@ -1,0 +1,105 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #007bff;
+    padding: 10px;
+    color: white;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+  }
+  
+  .navbar a:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos de contenedor */
+  .container {
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  /* Estilos para tarjetas (cards) */
+  .card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .card-header {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  /* Botones */
+  .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  /* Estilo para la tabla de citas */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+.table .btn {
+    margin-right: 5px;
+}
+
+.table .btn-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.table .btn-warning {
+    background-color: #ffc107;
+    color: white;
+}
+
+.table .btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+  

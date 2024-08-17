@@ -1,23 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Doctor</title>
-</head>
-<body>
-  <h1>Update Doctor</h1>
-  <form id="doctorForm" action="/api/doctors/<%= doctor._id %>?_method=PUT" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" value="<%= doctor.name %>" required>
-    <br>
-    <label for="specialization">Specialization:</label>
-    <input type="text" id="specialization" name="specialization" value="<%= doctor.specialization %>" required>
-    <br>
-    <label for="experience">Experience:</label>
-    <input type="number" id="experience" name="experience" value="<%= doctor.experience %>" required>
-    <br>
-    <button type="submit">Update Doctor</button>
-  </form>
-</body>
-</html>
+<%- include('layout.ejs') %>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Update Doctor</h3>
+    </div>
+    <div class="card-body">
+        <form action="/api/doctors/<%= doctor._id %>?_method=PUT" method="POST">
+            <div class="mb-3">
+                <label for="doctorName" class="form-label">Doctor Name</label>
+                <input type="text" class="form-control" id="doctorName" name="doctorName" value="<%= doctor.name %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="specialization" class="form-label">Specialization</label>
+                <input type="text" class="form-control" id="specialization" name="specialization" value="<%= doctor.specialization %>" required>
+            </div>
+            <button type="submit" class="btn">Update Doctor</button>
+        </form>
+    </div>
+</div>

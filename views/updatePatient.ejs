@@ -1,26 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Patient</title>
-</head>
-<body>
-  <h1>Update Patient</h1>
-  <form id="patientForm" action="/api/patients/<%= patient._id %>?_method=PUT" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" value="<%= patient.name %>" required>
-    <br>
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" value="<%= patient.age %>" required>
-    <br>
-    <label for="gender">Gender:</label>
-    <input type="text" id="gender" name="gender" value="<%= patient.gender %>" required>
-    <br>
-    <label for="medicalHistory">Medical History:</label>
-    <input type="text" id="medicalHistory" name="medicalHistory" value="<%= patient.medicalHistory %>" required>
-    <br>
-    <button type="submit">Update Patient</button>
-  </form>
-</body>
-</html>
+<%- include('layout.ejs') %>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Update Patient</h3>
+    </div>
+    <div class="card-body">
+        <form action="/api/patients/<%= patient._id %>?_method=PUT" method="POST">
+            <div class="mb-3">
+                <label for="patientName" class="form-label">Patient Name</label>
+                <input type="text" class="form-control" id="patientName" name="patientName" value="<%= patient.name %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob" value="<%= patient.dob.toISOString().split('T')[0] %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="<%= patient.email %>" required>
+            </div>
+            <button type="submit" class="btn">Update Patient</button>
+        </form>
+    </div>
+</div>

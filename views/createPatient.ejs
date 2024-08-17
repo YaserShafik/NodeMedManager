@@ -1,26 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Patient</title>
-</head>
-<body>
-  <h1>Create Patient</h1>
-  <form id="patientForm" action="/api/patients" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    <br>
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" required>
-    <br>
-    <label for="gender">Gender:</label>
-    <input type="text" id="gender" name="gender" required>
-    <br>
-    <label for="medicalHistory">Medical History:</label>
-    <input type="text" id="medicalHistory" name="medicalHistory" required>
-    <br>
-    <button type="submit">Create Patient</button>
-  </form>
-</body>
-</html>
+<%- include('layout.ejs') %>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Create Patient</h3>
+    </div>
+    <div class="card-body">
+        <form action="/api/patients" method="POST">
+            <div class="mb-3">
+                <label for="patientName" class="form-label">Patient Name</label>
+                <input type="text" class="form-control" id="patientName" name="patientName" required>
+            </div>
+            <div class="mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <button type="submit" class="btn">Create Patient</button>
+        </form>
+    </div>
+</div>

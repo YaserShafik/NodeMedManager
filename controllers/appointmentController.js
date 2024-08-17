@@ -1,3 +1,5 @@
+const { check, validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
 const Appointment = require('../models/Appointment');
 const User = require('../models/User')
 
@@ -44,11 +46,14 @@ exports.createAppointment = async (req, res) => {
 
 
 
+
 exports.getAppointments = async (req, res) => {
-  const appointments = await Appointment.find()
-    .populate('patient', 'firstName lastName')
-    .populate('doctor', 'firstName lastName specialty');
-  res.send(appointments);
+  try {
+      const appointments = await Appointment.find().populate('patient').populate('doctor');
+      res.render('appointments', { title: 'Appointments', appointments });
+  } catch (error) {
+      res.status(500).send('Server Error');
+  }
 };
 
 exports.getAppointment = async (req, res) => {
