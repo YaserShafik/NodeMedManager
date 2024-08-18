@@ -1,7 +1,7 @@
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const Appointment = require('../models/Appointment');
-const User = require('../models/User')
+const User = require('../models/User');
 
 exports.createAppointment = async (req, res) => {
   try {
@@ -15,11 +15,16 @@ exports.createAppointment = async (req, res) => {
     }
 
     // Find Patient in User collection
+    console.log("Searching for Patient:", patientName);
+
     const patient = await User.findOne({ name: patientName, role: 'Patient' });
     if (!patient) {
+      console.log("Patient not found for exact search:", patientName);
       return res.status(404).send('Patient not found');
     }
+    
     console.log("Patient found:", patient);
+    
 
     // Find Doctor in User collection
     const doctor = await User.findOne({ name: doctorName, role: 'Doctor' });
