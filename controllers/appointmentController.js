@@ -17,7 +17,7 @@ exports.createAppointment = async (req, res) => {
     // Find Patient in User collection
     console.log("Searching for Patient:", patientName);
 
-    const patient = await User.findOne({ name: patientName, role: 'Patient' });
+    const patient = await User.findOne({ username: patientName, role: 'Patient' });
     if (!patient) {
       console.log("Patient not found for exact search:", patientName);
       return res.status(404).send('Patient not found');
@@ -27,7 +27,7 @@ exports.createAppointment = async (req, res) => {
     
 
     // Find Doctor in User collection
-    const doctor = await User.findOne({ name: doctorName, role: 'Doctor' });
+    const doctor = await User.findOne({ username: doctorName, role: 'Doctor' });
     if (!doctor) {
       return res.status(404).send('Doctor not found');
     }

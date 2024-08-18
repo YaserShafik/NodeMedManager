@@ -53,8 +53,8 @@ exports.register = async (req, res) => {
       maxAge: 3600000
     });
 
-    // Redirigir a la página de creación de citas
-    res.status(201).redirect('/api/appointments/create');
+    // // Redirigir a la página de creación de citas
+    // res.status(201).redirect('/api/appointments/create');
   } catch (error) {
     res.status(500).send('Server error');
   }
