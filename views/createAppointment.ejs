@@ -6,6 +6,9 @@
     </div>
     <div class="card-body">
         <form action="/api/appointments" method="POST">
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            
             <div class="mb-3">
                 <label for="patientName" class="form-label">Patient Name</label>
                 <input type="text" class="form-control" id="patientName" name="patientName" required>

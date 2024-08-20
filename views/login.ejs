@@ -6,6 +6,10 @@
     </div>
     <div class="card-body">
         <form action="/api/auth/login" method="POST">
+            <!-- Campo oculto para el token CSRF -->
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        
+            <!-- Otros campos del formulario -->
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" required>
@@ -16,5 +20,6 @@
             </div>
             <button type="submit" class="btn">Login</button>
         </form>
+        
     </div>
 </div>

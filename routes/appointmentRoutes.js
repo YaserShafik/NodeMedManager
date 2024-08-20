@@ -4,9 +4,9 @@ const appointmentController = require('../controllers/appointmentController');
 const auth = require('../middleware/auth');
 const role = require('../middleware/role');
 
-// Render views
+
 router.get('/create', auth, role(['Doctor']), (req, res) => {
-  res.render('createAppointment');
+  res.render('createAppointment', { csrfToken: req.csrfToken() });
 });
 
 router.get('/update/:id', auth, role(['Doctor']), async (req, res) => {

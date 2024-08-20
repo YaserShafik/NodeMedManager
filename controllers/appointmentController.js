@@ -44,8 +44,8 @@ exports.createAppointment = async (req, res) => {
     await appointment.save();
     res.status(201).json(appointment);
   } catch (error) {
-    console.error('Error during appointment creation:', error);  
-    res.status(500).send('Server error');
+    error.statusCode = 400;
+    next(error);
   }
 };
 

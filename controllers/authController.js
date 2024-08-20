@@ -53,12 +53,18 @@ exports.register = async (req, res) => {
       maxAge: 3600000
     });
 
-    // // Redirigir a la página de creación de citas
-    // res.status(201).redirect('/api/appointments/create');
+    if (user.role === 'Doctor'){
+      return res.status(201).redirect('/api/appointments/create')
+    } else{
+      return res.status(200).send('User registered sucessfully')
+    }
+        
+
   } catch (error) {
     res.status(500).send('Server error');
   }
 };
+
 
 
 
@@ -82,9 +88,11 @@ exports.login = async (req, res) => {
     });
     console.log(token);
     
-
-    res.status(200).send('User logged sucessfully')
-    // res.redirect('/api/appointments/create');
+    if (user.role === 'Doctor'){
+      return res.status(201).redirect('/api/appointments/create')
+    } else{
+      return res.status(200).send('User registered sucessfully')
+    }
   } catch (error) {
     res.status(500).send('Server error');
   }
