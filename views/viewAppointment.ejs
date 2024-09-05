@@ -1,10 +1,8 @@
 <%- include('layout.ejs') %>
 
-<div class="card">
-    <div class="card-header">
-        <h3>Appointment Details</h3>
-    </div>
-    <div class="card-body">
+<div class="formbg">
+    <div class="padding-horizontal--48">
+        <h3 class="padding-bottom--15">Appointment Details</h3>
         <p><strong>Patient:</strong> <%= appointment.patient ? appointment.patient.name : 'Unknown Patient' %></p>
         <p><strong>Doctor:</strong> <%= appointment.doctor ? appointment.doctor.name : 'Unknown Doctor' %></p>
         <p><strong>Date:</strong> <%= new Date(appointment.date).toLocaleString() %></p>

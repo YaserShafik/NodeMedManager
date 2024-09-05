@@ -1,12 +1,9 @@
 <%- include('layout.ejs') %>
 
-<div class="card">
-    <div class="card-header">
+<div class="formbg">
+    <div class="padding-horizontal--48">
         <h3>Create Appointment</h3>
-    </div>
-    <div class="card-body">
         <form action="/api/appointments" method="POST">
-
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             
             <div class="mb-3">
@@ -25,7 +22,9 @@
                 <label for="reason" class="form-label">Reason</label>
                 <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
             </div>
-            <button type="submit" class="btn">Create Appointment</button>
+            <div class="padding-top--24">
+                <button type="submit" class="btn">Create Appointment</button>
+            </div>
         </form>
     </div>
 </div>

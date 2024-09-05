@@ -1,38 +1,40 @@
 <%- include('layout.ejs') %>
 
-<div class="card">
-    <div class="card-header">
-        <h3>Appointments</h3>
-        <a href="/api/appointments/create" class="btn">Create New Appointment</a>
-    </div>
-    <div class="card-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Patient</th>
-                    <th scope="col">Doctor</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Reason</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% appointments.forEach(appointment => { %>
+<div class="formbg">
+    <div class="padding-horizontal--48">
+        <div class="grid--50-50">
+            <h3>Appointments</h3>
+            <a href="/api/appointments/create" class="btn">Create New Appointment</a>
+        </div>
+        <div class="padding-top--24">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><%= appointment.patient ? appointment.patient.name : 'Unknown Patient' %></td>
-                        <td><%= appointment.doctor ? appointment.doctor.name : 'Unknown Doctor' %></td>
-                        <td><%= new Date(appointment.date).toLocaleString() %></td>
-                        <td><%= appointment.reason %></td>
-                        <td>
-                            <a href="/api/appointments/<%= appointment._id %>" class="btn btn-info">View</a>
-                            <a href="/api/appointments/update/<%= appointment._id %>" class="btn btn-warning">Edit</a>
-                            <form action="/api/appointments/<%= appointment._id %>?_method=DELETE" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
+                        <th scope="col">Patient</th>
+                        <th scope="col">Doctor</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Actions</th>
                     </tr>
-                <% }) %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% appointments.forEach(appointment => { %>
+                        <tr>
+                            <td><%= appointment.patient ? appointment.patient.name : 'Unknown Patient' %></td>
+                            <td><%= appointment.doctor ? appointment.doctor.name : 'Unknown Doctor' %></td>
+                            <td><%= new Date(appointment.date).toLocaleString() %></td>
+                            <td><%= appointment.reason %></td>
+                            <td class="grid--50-50">
+                                <a href="/api/appointments/<%= appointment._id %>" class="btn btn-info">View</a>
+                                <a href="/api/appointments/update/<%= appointment._id %>" class="btn btn-warning">Edit</a>
+                                <form action="/api/appointments/<%= appointment._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

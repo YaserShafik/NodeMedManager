@@ -9,7 +9,7 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A comprehensive Medical Clinic Management System built with Node.js, Express.js, and MongoDB to streamline administrative processes and enhance patient care.",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^5.1.0",
@@ -29,5 +29,9 @@
   },
   "devDependencies": {
     "jest": "^29.7.0"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": []
 }

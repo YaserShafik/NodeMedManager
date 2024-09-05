@@ -39,11 +39,11 @@ app.use('/api/patients', require('./routes/patientRoutes'));
 app.use('/api/doctors', require('./routes/doctorRoutes'));
 app.use('/api/appointments', require('./routes/appointmentRoutes'));
 
-app.use((req, res, next) => {
-  const error = new Error('Not Found');
-  error.statusCode = 404;
-  next(error);
-});
+// app.use((req, res, next) => {
+//   const error = new Error('Not Found');
+//   error.statusCode = 404;
+//   next(error);
+// });
 app.use(require('./middleware/errorHandler'));
 
 // Server port

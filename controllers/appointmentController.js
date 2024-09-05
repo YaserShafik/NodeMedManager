@@ -42,7 +42,18 @@ exports.createAppointment = async (req, res) => {
     });
 
     await appointment.save();
-    res.status(201).json(appointment);
+  
+    // Render appointmentDetails view
+    res.status(201).render('appointmentDetails',{
+      title: 'Appointment Created',
+      appointment: {
+        _id: appointment._id,
+        patient: patient.username,
+        doctor: doctor.username,
+        date: new Date(appointment.date).toLocaleString(),
+        reason: appointment.reason,
+      },
+    })
   } catch (error) {
     error.statusCode = 400;
     next(error);

@@ -1,105 +1,228 @@
-/* Estilos generales */
+/* Reset general */
+* {
+  padding: 0;
+  margin: 0;
+  color: #1a1f36;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Navbar */
-  .navbar {
-    background-color: #007bff;
-    padding: 10px;
-    color: white;
-  }
-  
-  .navbar a {
-    color: white;
-    text-decoration: none;
-    padding: 8px 16px;
-  }
-  
-  .navbar a:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Estilos de contenedor */
-  .container {
-    max-width: 960px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  /* Estilos para tarjetas (cards) */
-  .card {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .card-header {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
-  .form-label {
-    font-weight: bold;
-  }
-  
-  /* Botones */
-  .btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .btn:hover {
-    background-color: #0056b3;
-  }
-  /* Estilo para la tabla de citas */
+  min-height: 100%;
+  background-color: #ffffff;
+  margin: 20px;
+}
+
+h1, h3 {
+  letter-spacing: -1px;
+  color: #1a1f36;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+a {
+  color: #5469d4;
+  text-decoration: unset;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Estilo general de botones */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #5469d4;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #4557b8;
+}
+
+.btn-info {
+  background-color: #3b82f6;
+}
+
+.btn-warning {
+  background-color: #f59e0b;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+}
+
+.btn-info:hover, .btn-warning:hover, .btn-danger:hover {
+  opacity: 0.8;
+}
+
+.navbar {
+  background-color: #5469d4;
+  padding: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar a {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 6px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: #4456b8;
+  border-radius: 4px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 10px;
+}
+
 .table {
-    width: 100%;
-    margin-bottom: 1rem;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table thead {
+  background-color: #5469d4;
+  color: white;
 }
 
 .table th, .table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
+  padding: 10px;
+  border: 1px solid #e3e8ee;
+  text-align: left;
 }
 
-.table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
+.table tbody tr:hover {
+  background-color: #f1f5f9;
 }
 
-.table tbody + tbody {
-    border-top: 2px solid #dee2e6;
+/* Formulario de crear cita */
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.table .btn {
-    margin-right: 5px;
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #e3e8ee;
+  margin-bottom: 20px;
+  font-size: 16px;
 }
 
-.table .btn-info {
-    background-color: #17a2b8;
-    color: white;
+.form-control:focus {
+  border-color: #5469d4;
+  outline: none;
 }
 
-.table .btn-warning {
-    background-color: #ffc107;
-    color: white;
+textarea.form-control {
+  resize: vertical;
 }
 
-.table .btn-danger {
-    background-color: #dc3545;
-    color: white;
+button[type="submit"] {
+  background-color: #5469d4;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-  
+button[type="submit"]:hover {
+  background-color: #4557b8;
+}
+
+/* Estilos específicos */
+.appointment-info p {
+  margin-bottom: 10px;
+}
+
+.appointment-info p strong {
+  font-weight: bold;
+}
+
+.formbg {
+  margin: 0 auto;
+  max-width: 600px;
+  background: white;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #697386;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+}

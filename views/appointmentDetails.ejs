@@ -1,0 +1,22 @@
+<%- include('layout.ejs') %>
+    <div class="loginbackground">
+        <div class="loginbackground-gridContainer">
+            <div class="flex-flex align-center center-center">
+                <div class="formbg">
+                    <div class="padding-horizontal--48">
+                        <h1 class="padding-bottom--15">Appointment Details</h1>
+                        <div class="appointment-info">
+                            <p><strong>Patient:</strong> <%= appointment.patient %></p>
+                            <p><strong>Doctor:</strong> <%= appointment.doctor %></p>
+                            <p><strong>Date:</strong> <%= appointment.date %></p>
+                            <p><strong>Reason:</strong> <%= appointment.reason %></p>
+                        </div>
+                        <div class="padding-top--24">
+                            <a href="/api/appointments" class="btn">Back to Appointments</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
