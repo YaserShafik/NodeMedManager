@@ -17,7 +17,6 @@ router.get('/login', (req, res) => {
   console.log("Get a login get")
   res.render('login',{title: 'Login', body:'', csrfToken:req.csrfToken()});
 });
-
 // Handle login form submission
 router.post('/login', authController.login);
 

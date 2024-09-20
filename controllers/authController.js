@@ -31,10 +31,6 @@ exports.register = async (req, res) => {
 
   try {
     const { username, email, password, role } = req.body;
-
-    // Verificar si el usuario ya existe
-   hgfngh
-
     // Crear un nuevo usuario
     user = new User({ username, email, password: await bcrypt.hash(password, 10), role });
 
@@ -65,8 +61,6 @@ exports.register = async (req, res) => {
 };
 
 
-
-
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -85,7 +79,7 @@ exports.login = async (req, res) => {
       secure: process.env.NODE_ENV === "production", 
       maxAge: 3600000 // 1 hour
     });
-    console.log(token);
+    console.log("Wellcome User");
     
     if (user.role === 'Doctor'){
       return res.status(201).redirect('/api/appointments/create')

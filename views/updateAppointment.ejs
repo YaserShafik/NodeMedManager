@@ -1,28 +1,38 @@
 <%- include('layout.ejs') %>
 
 <div class="card">
-    <div class="card-header">
-        <h3>Update Appointment</h3>
-    </div>
-    <div class="card-body">
-        <form action="/api/appointments/<%= appointment._id %>?_method=PUT" method="POST">
-            <div class="mb-3">
-                <label for="patientName" class="form-label">Patient Name</label>
-                <input type="text" class="form-control" id="patientName" name="patientName" value="<%= appointment.patient ? appointment.patient.name : '' %>" required>
-            </div>
-            <div class="mb-3">
-                <label for="doctorName" class="form-label">Doctor Name</label>
-                <input type="text" class="form-control" id="doctorName" name="doctorName" value="<%= appointment.doctor ? appointment.doctor.name : '' %>" required>
-            </div>
-            <div class="mb-3">
-                <label for="date" class="form-label">Date</label>
-                <input type="datetime-local" class="form-control" id="date" name="date" value="<%= new Date(appointment.date).toISOString().slice(0, 16) %>" required>
-            </div>
-            <div class="mb-3">
-                <label for="reason" class="form-label">Reason</label>
-                <textarea class="form-control" id="reason" name="reason" rows="3" required><%= appointment.reason %></textarea>
-            </div>
-            <button type="submit" class="btn">Update Appointment</button>
-        </form>
-    </div>
+  <div class="card-header">
+    <h3>Update Appointment</h3>
+  </div>
+  <div class="card-body">
+    <form action="/api/appointments/update/<%= appointment._id %>" method="PUT">
+      <input type="hidden" name="_method" value="PUT">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">  <!-- Protección CSRF -->
+
+      <div class="mb-3">
+        <label for="patientName" class="form-label">Patient Name</label>
+        <input type="text" class="form-control" id="patientName" name="patientName" 
+               value="<%= appointment.patient ? appointment.patient.username : '' %>" >
+      </div>
+
+      <div class="mb-3">
+        <label for="doctorName" class="form-label">Doctor Name</label>
+        <input type="text" class="form-control" id="doctorName" name="doctorName" 
+               value="<%= appointment.doctor ? appointment.doctor.username : '' %>" >
+      </div>
+
+      <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input type="datetime-local" class="form-control" id="date" name="date" value="<%= appointment.date ? new Date(appointment.date).toISOString().slice(0, 16) : '' %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="reason" class="form-label">Reason</label>
+        <textarea class="form-control" id="reason" name="reason" value="<%= appointment.reason %>" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Update Appointment</button>
+
+    </form>
+  </div>
 </div>

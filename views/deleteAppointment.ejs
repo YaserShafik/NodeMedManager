@@ -11,7 +11,10 @@
         <p><strong>Date:</strong> <%= new Date(appointment.date).toLocaleString() %></p>
         <p><strong>Reason:</strong> <%= appointment.reason %></p>
         <form action="/api/appointments/<%= appointment._id %>?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-danger">Delete Appointment</button>
+            <!-- Campo oculto para el token CSRF -->
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>            <button type="submit" class="btn btn-danger">Delete Appointment</button>
             <a href="/api/appointments" class="btn">Cancel</a>
         </form>
     </div>

@@ -4,19 +4,20 @@
     <div class="padding-horizontal--48">
         <h3 class="padding-bottom--15">Login</h3>
         <form action="/api/auth/login" method="POST">
-            <!-- Campo oculto para el token CSRF -->
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>"> <!-- Token CSRF oculto -->
         
-            <!-- Otros campos del formulario -->
-            <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
+            <div class="form-group">
+                <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+        
+            <div class="form-group">
+                <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn">Login</button>
+        
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
+        
     </div>
 </div>

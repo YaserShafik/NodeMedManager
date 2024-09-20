@@ -10,8 +10,8 @@ router.get('/create', auth, role(['Doctor']), (req, res) => {
 });
 
 router.get('/update/:id', auth, role(['Doctor']), async (req, res) => {
-  const appointment = await appointmentController.getAppointmentById(req.params.id);
-  res.render('updateAppointment', { appointment });
+  // const appointment = await appointmentController.renderUpdateAppointment;
+  res.render('updateAppointment', { csrfToken: req.csrfToken() });
 });
 
 router.get('/delete/:id', auth, role(['Doctor', 'Admin']), async (req, res) => {
@@ -23,7 +23,7 @@ router.get('/delete/:id', auth, role(['Doctor', 'Admin']), async (req, res) => {
 router.post('/', auth, role(['Doctor']), appointmentController.createAppointment);
 router.get('/', auth, role(['Doctor', 'Admin']), appointmentController.getAppointments);
 router.get('/:id', auth, role(['Doctor', 'Admin']), appointmentController.getAppointment);
-router.put('/:id', auth, role(['Doctor']), appointmentController.updateAppointment);
+router.put('/update/:id', auth, role(['Doctor']), appointmentController.updateAppointment);
 router.delete('/:id', auth, role(['Admin']), appointmentController.deleteAppointment);
 
 module.exports = router;
