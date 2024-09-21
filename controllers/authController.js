@@ -65,11 +65,19 @@ exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
-    if (!user) return res.status(400).send('Invalid email or password');
+    console.log("Login attempt with email: ", email);
+    
 
+    const user = await User.findOne({ email });
+    if (!user) {
+      console.log("User not found for email: ", email);
+      return res.status(400).send('Invalid email or password');
+    }
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).send('Invalid email or password');
+    if (!isMatch) {
+      console.log("Password does not match for email:", email);  // Contraseña no coincide
+      return res.status(400).send('Invalid email or password');
+    }
 
     // Incluir el rol en el token JWT
     const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
@@ -79,7 +87,7 @@ exports.login = async (req, res) => {
       secure: process.env.NODE_ENV === "production", 
       maxAge: 3600000 // 1 hour
     });
-    console.log("Wellcome User");
+    console.log("User logged in successfully: ", user.username);
     
     if (user.role === 'Doctor'){
       return res.status(201).redirect('/api/appointments/create')
