@@ -38,7 +38,7 @@ app.use(cookieParser());
 
 
 const csrfProtection = csurf({cookie: true});
-// app.use(csrfProtection);
+app.use(csrfProtection);
 
 app.use((req, res, next) => {
     res.locals.csrfToken = req.csrfToken(); // Esto hace que csrfToken esté disponible en todas las vistas
