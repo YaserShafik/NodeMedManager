@@ -93,19 +93,13 @@ exports.getAppointmentById = async (id) => {
 
 exports.updateAppointment = async (req, res) => {
   try {
-    console.log("Intentando actualizar la cita con ID:", req.params.id);
-    console.log("Datos recibidos del formulario:", req.body);  // Verificar que los datos lleguen correctamente
-
     const { patient, doctor, date, reason } = req.body;
-
-    // Buscar el paciente por nombre
     const foundPatient = await User.findOne({ username: patient, role: 'Patient' });
     if (!foundPatient) {
       console.log("Paciente no encontrado:", patient);
       return res.status(404).send('Paciente no encontrado');
     }
 
-    // Buscar el doctor por nombre
     const foundDoctor = await User.findOne({ username: doctor, role: 'Doctor' });
     if (!foundDoctor) {
       console.log("Doctor no encontrado:", doctor);
@@ -125,9 +119,6 @@ exports.updateAppointment = async (req, res) => {
       return res.status(404).send('Cita no encontrada');
     }
 
-    console.log('Cita actualizada:', appointment);
-
-    // Redirigir o enviar una respuesta JSON después de actualizar
     res.redirect(`/api/appointments/${appointment._id}`);  // Redirigir a la vista de detalles de la cita
   } catch (error) {
     console.error('Error actualizando la cita:', error);
@@ -135,36 +126,6 @@ exports.updateAppointment = async (req, res) => {
   }
 };
 
-
-
-
-// exports.renderUpdateAppointment = async (req, res) => {
-//   try {
-//     const appointmentId = req.params.id;  // Obtiene el ID de la cita desde los parámetros de la URL
-
-//     // Buscar la cita por su ID, poblando los detalles de paciente y doctor
-//     const appointment = await Appointment.findById(appointmentId)
-//       .populate('patient', '_id username email')
-//       .populate('doctor', '_id username email');
-
-//     if (appointment.date) {
-//         appointment.date = new Date(appointment.date);
-//       }
-
-//     if (!appointment) {
-//       return res.status(404).send('Appointment not found');
-//     }
-
-//     // Renderizar la vista de actualización de la cita, pasando el token CSRF
-//     res.render('updateAppointment', {
-//       appointment, 
-//       csrfToken: req.csrfToken()  // Pasar el token CSRF a la vista
-//     });
-//   } catch (error) {
-//     console.error('Error fetching appointment for update:', error);
-//     res.status(500).send('Server error');
-//   }
-// };
 
 exports.deleteAppointment = async (req, res) => {
   const appointment = await Appointment.findByIdAndDelete(req.params.id);

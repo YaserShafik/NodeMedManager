@@ -27,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
     console.log('Cuerpo de la solicitud (req.body):', req.body);
+    console.log('Token CSRF enviado:', req.body._csrf);
     next();
   });
 
@@ -44,7 +45,7 @@ mongoose.connect(process.env.MONGO_URI, {
     process.exit(1);  // Finaliza la aplicación si no puede conectarse a la base de datos
 });
 
-// Cargar `method-override` para manejar PUT y DELETE a través de POST
+// Cargar `method-override` para manejar PUT y DELETE a través de POST esto ha sido CLAVE
 app.use(methodOverride((req, res) => {
     console.log(`Interceptando método: ${req.method}, _method: ${req.body._method}`);
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {

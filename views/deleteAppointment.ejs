@@ -5,17 +5,13 @@
         <h3>Delete Appointment</h3>
     </div>
     <div class="card-body">
-        <p>Are you sure you want to delete this appointment?</p>
-        <p><strong>Patient:</strong> <%= appointment.patient ? appointment.patient.name : 'Unknown Patient' %></p>
-        <p><strong>Doctor:</strong> <%= appointment.doctor ? appointment.doctor.name : 'Unknown Doctor' %></p>
-        <p><strong>Date:</strong> <%= new Date(appointment.date).toLocaleString() %></p>
-        <p><strong>Reason:</strong> <%= appointment.reason %></p>
-        <form action="/api/appointments/<%= appointment._id %>?_method=DELETE" method="POST">
-            <!-- Campo oculto para el token CSRF -->
+        <form action="/api/appointments/delete/<%= appointment._id %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>            <button type="submit" class="btn btn-danger">Delete Appointment</button>
-            <a href="/api/appointments" class="btn">Cancel</a>
-        </form>
+          
+            <p>Are you sure you want to delete this appointment?</p>
+            <button type="submit">Delete Appointment</button>
+          </form>
+          
     </div>
 </div>

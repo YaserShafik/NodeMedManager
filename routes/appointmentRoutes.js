@@ -41,6 +41,6 @@ router.post('/', auth, role(['Doctor']), appointmentController.createAppointment
 router.get('/', auth, role(['Doctor', 'Admin']), appointmentController.getAppointments);
 router.get('/:id', auth, role(['Doctor', 'Admin']), appointmentController.getAppointment);
 
-router.delete('/:id', auth, role(['Admin']), appointmentController.deleteAppointment);
+router.delete('/:id', auth, role(['Doctor']), appointmentController.deleteAppointment);
 
 module.exports = router;
