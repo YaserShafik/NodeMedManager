@@ -35,11 +35,12 @@ router.get('/delete/:id', auth, role(['Doctor', 'Admin']), async (req, res) => {
   res.render('deleteAppointment', { appointment });
 });
 
+router.put('/update/:id', auth, role(['Doctor']), appointmentController.updateAppointment);
 // API routes
 router.post('/', auth, role(['Doctor']), appointmentController.createAppointment);
 router.get('/', auth, role(['Doctor', 'Admin']), appointmentController.getAppointments);
 router.get('/:id', auth, role(['Doctor', 'Admin']), appointmentController.getAppointment);
-router.put('/update/:id', auth, role(['Doctor']), appointmentController.updateAppointment);
+
 router.delete('/:id', auth, role(['Admin']), appointmentController.deleteAppointment);
 
 module.exports = router;

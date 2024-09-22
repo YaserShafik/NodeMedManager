@@ -5,9 +5,12 @@
     <h3>Update Appointment</h3>
   </div>
   <div class="card-body">
-    <form action="/api/appointments/update/<%= appointment._id %>" method="PUT">
+    <form action="/api/appointments/update/<%= appointment._id %>" method="POST">
+      <!-- Este campo permite que method-override trate la solicitud como PUT -->
       <input type="hidden" name="_method" value="PUT">
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>">  <!-- Protección CSRF -->
+      
+      <!-- Token CSRF -->
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>"> 
 
       <div class="mb-3">
         <label for="patient" class="form-label">Patient Name</label>
@@ -36,3 +39,4 @@
     </form>
   </div>
 </div>
+

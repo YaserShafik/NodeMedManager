@@ -94,7 +94,7 @@ exports.getAppointmentById = async (id) => {
 exports.updateAppointment = async (req, res) => {
   try {
     console.log("Intentando actualizar la cita con ID:", req.params.id);
-    console.log("Datos recibidos del formulario:", req.body);  // Verificar los datos recibidos
+    console.log("Datos recibidos del formulario:", req.body);  // Verificar que los datos lleguen correctamente
 
     const { patient, doctor, date, reason } = req.body;
 
@@ -126,12 +126,15 @@ exports.updateAppointment = async (req, res) => {
     }
 
     console.log('Cita actualizada:', appointment);
-    res.send("Cita actualizada correctamente");
+
+    // Redirigir o enviar una respuesta JSON después de actualizar
+    res.redirect(`/api/appointments/${appointment._id}`);  // Redirigir a la vista de detalles de la cita
   } catch (error) {
     console.error('Error actualizando la cita:', error);
     res.status(500).send('Error al actualizar la cita');
   }
 };
+
 
 
 
