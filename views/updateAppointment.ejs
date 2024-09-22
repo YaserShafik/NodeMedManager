@@ -10,14 +10,14 @@
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">  <!-- Protección CSRF -->
 
       <div class="mb-3">
-        <label for="patientName" class="form-label">Patient Name</label>
-        <input type="text" class="form-control" id="patientName" name="patientName" 
+        <label for="patient" class="form-label">Patient Name</label>
+        <input type="text" class="form-control" id="patient" name="patient" 
                value="<%= appointment.patient ? appointment.patient.username : '' %>" >
       </div>
 
       <div class="mb-3">
-        <label for="doctorName" class="form-label">Doctor Name</label>
-        <input type="text" class="form-control" id="doctorName" name="doctorName" 
+        <label for="doctor" class="form-label">Doctor Name</label>
+        <input type="text" class="form-control" id="doctor" name="doctor" 
                value="<%= appointment.doctor ? appointment.doctor.username : '' %>" >
       </div>
 

@@ -10,8 +10,24 @@ router.get('/create', auth, role(['Doctor']), (req, res) => {
 });
 
 router.get('/update/:id', auth, role(['Doctor']), async (req, res) => {
-  // const appointment = await appointmentController.renderUpdateAppointment;
-  res.render('updateAppointment', { csrfToken: req.csrfToken() });
+  try {
+    // Obtener la cita por ID
+    const appointment = await appointmentController.getAppointmentById(req.params.id);
+    
+    // Verificar si la cita existe
+    if (!appointment) {
+      return res.status(404).send('Appointment not found');
+    }
+
+    // Renderizar la vista de actualización, pasando la cita y el token CSRF
+    res.render('updateAppointment', {
+      appointment,  
+      csrfToken: req.csrfToken()
+    });
+  } catch (error) {
+    console.error('Error fetching appointment for update:', error);
+    res.status(500).send('Server error');
+  }
 });
 
 router.get('/delete/:id', auth, role(['Doctor', 'Admin']), async (req, res) => {

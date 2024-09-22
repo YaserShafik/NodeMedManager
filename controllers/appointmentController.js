@@ -94,16 +94,35 @@ exports.getAppointmentById = async (id) => {
 exports.updateAppointment = async (req, res) => {
   try {
     console.log("Intentando actualizar la cita con ID:", req.params.id);
-    console.log("Datos recibidos del formulario:", req.body);
+    console.log("Datos recibidos del formulario:", req.body);  // Verificar los datos recibidos
 
-    const appointment = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!appointment) {
-      console.log("Cita no encontrada");
-      return res.status(404).send('Appointment not found');
+    const { patient, doctor, date, reason } = req.body;
+
+    // Buscar el paciente por nombre
+    const foundPatient = await User.findOne({ username: patient, role: 'Patient' });
+    if (!foundPatient) {
+      console.log("Paciente no encontrado:", patient);
+      return res.status(404).send('Paciente no encontrado');
     }
 
-    if (!appointment.date) {
-      appointment.date = new Date(); // Establecer la fecha actual si está vacía
+    // Buscar el doctor por nombre
+    const foundDoctor = await User.findOne({ username: doctor, role: 'Doctor' });
+    if (!foundDoctor) {
+      console.log("Doctor no encontrado:", doctor);
+      return res.status(404).send('Doctor no encontrado');
+    }
+
+    // Actualizar la cita
+    const appointment = await Appointment.findByIdAndUpdate(req.params.id, {
+      patient: foundPatient._id,
+      doctor: foundDoctor._id,
+      date,
+      reason
+    }, { new: true });
+
+    if (!appointment) {
+      console.log("Cita no encontrada");
+      return res.status(404).send('Cita no encontrada');
     }
 
     console.log('Cita actualizada:', appointment);
@@ -113,6 +132,7 @@ exports.updateAppointment = async (req, res) => {
     res.status(500).send('Error al actualizar la cita');
   }
 };
+
 
 
 // exports.renderUpdateAppointment = async (req, res) => {
