@@ -6,12 +6,16 @@
     </div>
     <div class="card-body">
         <form action="/api/appointments/delete/<%= appointment._id %>" method="POST">
+            <!-- Campo para convertir el método POST en DELETE -->
             <input type="hidden" name="_method" value="DELETE">
+            
+            <!-- Campo para el token CSRF -->
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           
             <p>Are you sure you want to delete this appointment?</p>
             <button type="submit">Delete Appointment</button>
           </form>
+          
           
     </div>
 </div>

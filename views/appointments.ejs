@@ -27,9 +27,8 @@
                             <td class="grid--50-50">
                                 <a href="/api/appointments/<%= appointment._id %>" class="btn btn-info">View</a>
                                 <a href="/api/appointments/update/<%= appointment._id %>" class="btn btn-warning">Edit</a>
-                                <form action="/api/appointments/<%= appointment._id %>?_method=DELETE" method="POST" style="display:inline;">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                <a href="/api/appointments/delete/<%= appointment._id %>" class="btn btn-danger">Delete</a>
+
                             </td>
                         </tr>
                     <% }) %>

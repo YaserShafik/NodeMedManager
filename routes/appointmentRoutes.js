@@ -30,10 +30,26 @@ router.get('/update/:id', auth, role(['Doctor']), async (req, res) => {
   }
 });
 
+// Ruta para eliminar cita - GET para cargar la vista
 router.get('/delete/:id', auth, role(['Doctor', 'Admin']), async (req, res) => {
-  const appointment = await appointmentController.getAppointmentById(req.params.id);
-  res.render('deleteAppointment', { appointment });
+  try {
+    const appointment = await appointmentController.getAppointmentById(req.params.id);
+    
+    if (!appointment) {
+      return res.status(404).send('Appointment not found');
+    }
+
+    res.render('deleteAppointment', {
+      appointment,
+      csrfToken: req.csrfToken()  // Pasar el token CSRF a la vista
+    });
+  } catch (error) {
+    console.error('Error fetching appointment for deletion:', error);
+    res.status(500).send('Server error');
+  }
 });
+
+
 
 router.put('/update/:id', auth, role(['Doctor']), appointmentController.updateAppointment);
 // API routes
@@ -41,6 +57,6 @@ router.post('/', auth, role(['Doctor']), appointmentController.createAppointment
 router.get('/', auth, role(['Doctor', 'Admin']), appointmentController.getAppointments);
 router.get('/:id', auth, role(['Doctor', 'Admin']), appointmentController.getAppointment);
 
-router.delete('/:id', auth, role(['Doctor']), appointmentController.deleteAppointment);
+router.delete('/delete/:id', auth, role(['Doctor']), appointmentController.deleteAppointment);
 
 module.exports = router;
