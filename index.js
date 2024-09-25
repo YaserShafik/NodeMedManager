@@ -13,27 +13,27 @@ dotenv.config();
 
 const app = express();
 
-// Configuración de motor de plantillas
+// View engine ejs
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Middleware de seguridad
 app.use(helmetConfig);
 app.use(cors());
 app.use(cookieParser());
 
-// Middlewares para manejar JSON, URL-encoded y formularios
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware para archivos estáticos
+// Middleware to serve static files
 app.use(express.static('public'));
 
-// Cargar `method-override` para manejar PUT y DELETE a través de POST esto ha sido CLAVE
+
+// Load 'method-override' to handel  PUT and DELETE through POST, DONT TOUCH
 app.use(methodOverride((req, res) => {
     console.log(`Interceptando método: ${req.method}, _method: ${req.body._method}`);
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-      return req.body._method;  // Cambiar el método HTTP a lo que indica _method
+      return req.body._method; 
     }
 }));
 
@@ -44,22 +44,29 @@ const csrfProtection = csurf({
 app.use(csrfProtection);
 
 app.use((req, res, next) => {
-    res.locals.csrfToken = req.csrfToken(); // CSRF token disponible en todas las vistas
+    res.locals.csrfToken = req.csrfToken(); 
     next();
 });
 
+// Routes
+app.get('/', (req, res) => {
+  res.render('login', {
+    title: 'Login',
+    csrfToken: req.csrfToken()  
+  });
+});
 
-// Rutas
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use(auth);  // Middleware de autenticación
 app.use('/api/patients', require('./routes/patientRoutes'));
 app.use('/api/doctors', require('./routes/doctorRoutes'));
 app.use('/api/appointments', require('./routes/appointmentRoutes'));
 
-// Middleware de manejo de errores
+
+// errorHandler middleware
 app.use(require('./middleware/errorHandler'));
 
-// Conectar a MongoDB
+// MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -67,10 +74,10 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('MongoDB connected'))
 .catch(err => {
   console.error('Error al conectar a MongoDB:', err);
-  process.exit(1);  // Finaliza la aplicación si no puede conectarse a la base de datos
+  process.exit(1); 
 });
 
 
-// Iniciar servidor
+// Init server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
