@@ -31,10 +31,11 @@ app.use(express.static('public'));
 
 // Load 'method-override' to handel  PUT and DELETE through POST, DONT TOUCH
 app.use(methodOverride((req, res) => {
-    console.log(`Interceptando método: ${req.method}, _method: ${req.body._method}`);
-    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-      return req.body._method; 
-    }
+  console.log(`Interceptando método: ${req.method}, _method: ${req.body._method}`);
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      return req.body._method;
+  }
+  return req.method;
 }));
 
 // Protección CSRF
@@ -71,7 +72,12 @@ mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => console.log('MongoDB connected'))
+.then(() => {
+  console.log('MongoDB connected');
+  // Init server only after successful MongoDB connection
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+})
 .catch(err => {
   console.error('Error al conectar a MongoDB:', err);
   process.exit(1); 

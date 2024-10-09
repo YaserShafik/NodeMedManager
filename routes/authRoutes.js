@@ -5,7 +5,6 @@ const {check, validationResult } = require('express-validator')
 
 // Render the register view
 router.get('/register', (req, res) => {
-  console.log('CSFR Token: ', req.csrfToken());
   res.render('register', {csrfToken:req.csrfToken()});
 });
 
@@ -14,7 +13,6 @@ router.post('/register',  authController.register);
 
 // Render the login view
 router.get('/login', (req, res) => {
-  console.log("Get a login get")
   res.render('login',{title: 'Login', body:'', csrfToken:req.csrfToken()});
 });
 // Handle login form submission

@@ -2,6 +2,7 @@ const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const Appointment = require('../models/Appointment');
 const User = require('../models/User');
+const sendMail = require('../utils/mailer');
 
 exports.createAppointment = async (req, res) => {
   try {
@@ -36,6 +37,9 @@ exports.createAppointment = async (req, res) => {
     });
 
     await appointment.save();
+    
+    // Send email notification to patient
+    sendMail(patient.email, 'Nueva Cita', `Tienes una nueva cita con el Dr. ${doctor.username} el ${date}`);
   
     // Render appointmentDetails view
     res.status(201).render('appointmentDetails',{
